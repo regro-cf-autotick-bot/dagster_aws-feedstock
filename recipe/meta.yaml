@@ -1,20 +1,20 @@
 {% set name = "dagster_aws" %}
-{% set version = "0.6.6" %}
+{% set version = "0.7.2" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 195f2d4c50c10fad0f0f8676c733ac1864b51854bb4b09175dbcdfa321b63cbd
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('_', '-') }}-{{ version }}.tar.gz
+  sha256: 0bfb56df1ddcc180f3dc38a2c57da6826090ff176bf484ba32d817c67602acc8
 
 build:
   number: 0
   noarch: python
   entry_points:
     - dagster-aws = dagster_aws.cli.cli:main
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -39,11 +39,11 @@ test:
     - dagster-aws --help
 
 about:
-  home: "https://github.com/dagster-io/dagster/tree/master/python_modules/libraries/dagster-aws"
+  home: https://github.com/dagster-io/dagster/tree/master/python_modules/libraries/dagster-aws
   license: Apache Software
   license_family: APACHE
   license_file: LICENSE
-  summary: "Package for AWS-specific Dagster framework solid and resource components."
+  summary: Package for AWS-specific Dagster framework solid and resource components.
 
 extra:
   recipe-maintainers:
